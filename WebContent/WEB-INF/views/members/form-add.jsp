@@ -83,13 +83,19 @@
 		                </li>
 		                <!-- thêm class: menu-open -->
 		                <li class="nav-item">
-		                    <a href="" class="nav-link">
+		                    <a href="${pageContext.request.contextPath }/member/list" class="nav-link">
 		                        <i class="nav-icon fas fa-list"></i>
 		                        <p>Manage Members</p>
 		                    </a>
 		                </li>
 		                <li class="nav-item">
-		                    <a href="" class="nav-link">
+		                    <a href="${pageContext.request.contextPath }/category/list" class="nav-link">
+		                        <i class="nav-icon fas fa-list"></i>
+		                        <p>Manage Category</p>
+		                    </a>
+		                </li>
+		                <li class="nav-item">
+		                    <a href="${pageContext.request.contextPath }/product/list" class="nav-link">
 		                        <i class="nav-icon fas fa-list"></i>
 		                        <p>Manage Product</p>
 		                    </a>

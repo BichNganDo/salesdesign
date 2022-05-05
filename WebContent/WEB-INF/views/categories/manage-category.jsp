@@ -92,13 +92,19 @@
 		                </li>
 		                <!-- thêm class: menu-open -->
 		                <li class="nav-item">
-		                    <a href="" class="nav-link">
+		                    <a href="${pageContext.request.contextPath }/member/list" class="nav-link">
 		                        <i class="nav-icon fas fa-list"></i>
 		                        <p>Manage Members</p>
 		                    </a>
 		                </li>
 		                <li class="nav-item">
-		                    <a href="" class="nav-link">
+		                    <a href="${pageContext.request.contextPath }/category/list" class="nav-link">
+		                        <i class="nav-icon fas fa-list"></i>
+		                        <p>Manage Category</p>
+		                    </a>
+		                </li>
+		                <li class="nav-item">
+		                    <a href="${pageContext.request.contextPath }/product/list" class="nav-link">
 		                        <i class="nav-icon fas fa-list"></i>
 		                        <p>Manage Product</p>
 		                    </a>
@@ -118,13 +124,13 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0">Manage Member</h1>
+                            <h1 class="m-0">Manage Category</h1>
                         </div>
                         <!-- /.col -->
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item active">Manage Member</li>
+                                <li class="breadcrumb-item active">Manage Category</li>
                             </ol>
                         </div>
                         <!-- /.col -->
@@ -143,7 +149,7 @@
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="input-group">
-                                        <input type="text" name="search" class="form-control" placeholder="FullName, Email, Phone, Title...">
+                                        <input type="text" name="search" class="form-control" placeholder="CateName...">
                                         <div class="input-group-append">
                                             <button type="button" class="btn btn-primary">Search</i>
                                           </button>
@@ -153,8 +159,8 @@
                                  <div class="col-sm-3"></div>
 
                                 <div class="col-sm-3 text-right">
-                                    <a class="btn btn-primary" href="${pageContext.request.contextPath }/member/add-member">
-                                        <i class="fas fa-plus"></i> Add Member
+                                    <a class="btn btn-primary" href="${pageContext.request.contextPath}/category/add-category">
+                                        <i class="fas fa-plus"></i> Add Category
                                     </a>
                                 </div>
                             </div>
@@ -163,7 +169,7 @@
 
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">List Member</h3>
+                            <h3 class="card-title">List Categories</h3>
                             <div class="card-tools">
                                 <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
                                     <i class="fas fa-minus"></i>
@@ -177,20 +183,11 @@
                             <table class="table table-striped projects">
                                 <thead>
                                     <tr>
-                                        <th style="width: 5%">
+                                        <th style="width: 15%">
                                             Id
                                         </th>
-                                        <th style="width: 20%">
-                                            Full Name
-                                        </th>
-                                        <th style="width: 20%">
-                                            Email
-                                        </th>
-                                        <th style="width: 20%">
-                                            Phone
-                                        </th>
-                                        <th style="width: 15%">
-                                            Title
+                                        <th style="width: 50%">
+                                            Cate Name
                                         </th>
                                         <th>
                                         </th>
@@ -198,37 +195,27 @@
                                 </thead>
                                 <tbody>
                                 
-	                                <c:forEach var="tempMember" items="${members}"> 
+	                                <c:forEach var="tempCategory" items="${categories}"> 
 							 		<!-- add link update with member id -->
-							 		<c:url var="updateLink" value="/member/showFormForUpdate">
-							 			<c:param name="memberId" value="${tempMember.id }"></c:param>
+							 		<c:url var="updateLink" value="/category/showFormForUpdate">
+							 			<c:param name="categoryId" value="${tempCategory.id }"></c:param>
 							 		</c:url>
 							 		
 							 		<!-- add link delete with member id -->
-							 		<c:url var="deleteLink" value="/member/delete">
-							 			<c:param name="memberId" value="${tempMember.id }"></c:param>
+							 		<c:url var="deleteLink" value="/category/delete">
+							 			<c:param name="categoryId" value="${tempCategory.id }"></c:param>
 							 		</c:url>
 			 	
 	                                    <tr>
-	                                        <td>${tempMember.id}</td>
-	                                        <td>${tempMember.fullName}</td>
-	                                        <td>${tempMember.email}</td>
-	                                        <td>${tempMember.phone}</td>
-	                                        <c:choose>
-											    <c:when test="${tempMember.title == 1}">
-											          <td>Manager</td>
-											    </c:when>    
-											    <c:otherwise>
-											        <td>Employee</td>
-											    </c:otherwise>
-											</c:choose>
+	                                        <td>${tempCategory.id}</td>
+	                                        <td>${tempCategory.cateName}</td>
 											
 	                                        <td class="project-actions text-right">
 	                                            <a style="margin-right: 5px" class="btn btn-info btn-sm" href="${updateLink }">
 	                                              Edit
 	                                            </a>
 	                                            <a class="btn btn-danger btn-sm" href="${deleteLink }" 
-	                                            onclick="if(!(confirm('Are you want to delete this member?'))) return false">
+	                                            onclick="if(!(confirm('Are you want to delete this category?'))) return false">
 	                                                Delete
 	                                            </a>
 	                                        </td>
