@@ -59,5 +59,12 @@ public class CategoryController {
 		return "categories/form-add";
 	}
 	
+	@GetMapping("delete")
+	public String deleteCategory(@RequestParam("categoryId") int theId){
+		categoryService.deleteCategory(theId);
+		return "redirect:/category/list";
+
+	}
+	
 
 }
