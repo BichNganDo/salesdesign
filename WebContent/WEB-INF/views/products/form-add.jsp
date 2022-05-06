@@ -1,9 +1,10 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Add Category</title>
+<title>Add Product</title>
 
 	<!-- Google Font: Source Sans Pro -->
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -113,12 +114,12 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0">Add Category</h1>
+                            <h1 class="m-0">Add Product</h1>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="#">Dashbroad</a></li>
-                                <li class="breadcrumb-item active">Manage Category </li>
+                                <li class="breadcrumb-item active">Manage Product </li>
                             </ol>
                         </div>
                     </div>
@@ -130,13 +131,38 @@
                 <div class="container-fluid">
                     <div class="card card-primary">
                         <!-- form start -->
-                        <form:form action="saveCategory" modelAttribute="category" method="POST">
+                        <form:form action="saveProduct" modelAttribute="product" method="POST">
                         
                         <form:hidden path="id"/>
                             <div class="card-body">
                                 <div class="form-group">
-                                    <label>Category Name:</label>
-                                    <form:input path="cateName" type="text" class="form-control"/>
+                                    <label>Product Name:</label>
+                                    <form:input path="productName" type="text" class="form-control"/>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label>Description:</label>
+                                    <form:textarea path="description" type="text" class="form-control"/>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label>Sub Description:</label>
+                                    <form:input path="subDescription" type="text" class="form-control"/>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label>Price:</label>
+                                    <form:input path="price" type="nummber" class="form-control"/>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label>Category:</label>
+                                    <form:select  path="idCate" class="form-control">
+	                                   <form:option value="0" label="---Select Title---"/>
+		                                    <c:forEach var="tempCategory" items="${categories}"> 
+										    	<form:option value="${tempCategory.id}" label="${tempCategory.cateName}"/>
+								     		</c:forEach>
+								    </form:select>
                                 </div>
                                 
                                     <button type="submit" class="btn btn-primary">Submit</button>
