@@ -25,6 +25,13 @@ public class ProductController {
 	@Autowired
 	private CategoryService categoryService;
 	
+	@GetMapping("list")
+	public String listProducts(Model theModel) {
+		List<Product> theProducts = productService.getProducts();
+		theModel.addAttribute("products", theProducts);
+		return "products/manage-product";
+	}
+	
 	
 	@GetMapping("add-product")
 	public String showFormForAddProduct(Model theModel) {

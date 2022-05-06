@@ -3,7 +3,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Manage Member</title>
+<title>Manage Product</title>
 
 	<!-- Google Font: Source Sans Pro -->
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -124,13 +124,13 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0">Manage Member</h1>
+                            <h1 class="m-0">Manage Product</h1>
                         </div>
                         <!-- /.col -->
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item active">Manage Member</li>
+                                <li class="breadcrumb-item active">Manage Product</li>
                             </ol>
                         </div>
                         <!-- /.col -->
@@ -149,7 +149,7 @@
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="input-group">
-                                        <input type="text" name="search" class="form-control" placeholder="FullName, Email, Phone, Title...">
+                                        <input type="text" name="search" class="form-control" placeholder="Product Name...">
                                         <div class="input-group-append">
                                             <button type="button" class="btn btn-primary">Search</i>
                                           </button>
@@ -159,7 +159,7 @@
                                  <div class="col-sm-3"></div>
 
                                 <div class="col-sm-3 text-right">
-                                    <a class="btn btn-primary" href="${pageContext.request.contextPath }/member/add-member">
+                                    <a class="btn btn-primary" href="${pageContext.request.contextPath }/product/add-product">
                                         <i class="fas fa-plus"></i> Add Member
                                     </a>
                                 </div>
@@ -169,7 +169,7 @@
 
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">List Member</h3>
+                            <h3 class="card-title">List Products</h3>
                             <div class="card-tools">
                                 <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
                                     <i class="fas fa-minus"></i>
@@ -183,20 +183,23 @@
                             <table class="table table-striped projects">
                                 <thead>
                                     <tr>
-                                        <th style="width: 5%">
+                                        <th style="width: 2%">
                                             Id
                                         </th>
-                                        <th style="width: 20%">
-                                            Full Name
+                                        <th style="width: 15%">
+                                            Product Name
                                         </th>
-                                        <th style="width: 20%">
-                                            Email
-                                        </th>
-                                        <th style="width: 20%">
-                                            Phone
+                                        <th style="width: 25%">
+                                            Description
                                         </th>
                                         <th style="width: 15%">
-                                            Title
+                                            Sub Description
+                                        </th>
+                                        <th style="width: 15%">
+                                            Price
+                                        </th>
+                                         <th style="width: 15%">
+                                            Category
                                         </th>
                                         <th>
                                         </th>
@@ -204,37 +207,30 @@
                                 </thead>
                                 <tbody>
                                 
-	                                <c:forEach var="tempMember" items="${members}"> 
+	                                <c:forEach var="tempProduct" items="${products}"> 
 							 		<!-- add link update with member id -->
-							 		<c:url var="updateLink" value="/member/showFormForUpdate">
-							 			<c:param name="memberId" value="${tempMember.id }"></c:param>
+							 		<c:url var="updateLink" value="/product/showFormForUpdate">
+							 			<c:param name="productId" value="${tempProduct.id }"></c:param>
 							 		</c:url>
 							 		
 							 		<!-- add link delete with member id -->
-							 		<c:url var="deleteLink" value="/member/delete">
-							 			<c:param name="memberId" value="${tempMember.id }"></c:param>
+							 		<c:url var="deleteLink" value="/product/delete">
+							 			<c:param name="productId" value="${tempProduct.id }"></c:param>
 							 		</c:url>
 			 	
 	                                    <tr>
-	                                        <td>${tempMember.id}</td>
-	                                        <td>${tempMember.fullName}</td>
-	                                        <td>${tempMember.email}</td>
-	                                        <td>${tempMember.phone}</td>
-	                                        <c:choose>
-											    <c:when test="${tempMember.title == 1}">
-											          <td>Manager</td>
-											    </c:when>    
-											    <c:otherwise>
-											        <td>Employee</td>
-											    </c:otherwise>
-											</c:choose>
-											
+	                                        <td>${tempProduct.id}</td>
+	                                        <td>${tempProduct.productName}</td>
+	                                        <td>${tempProduct.description}</td>
+	                                        <td>${tempProduct.subDescription}</td>
+	                                        <td>${tempProduct.price}</td>
+	                                        <td>${tempProduct.idCate}</td>
 	                                        <td class="project-actions text-right">
 	                                            <a style="margin-right: 5px" class="btn btn-info btn-sm" href="${updateLink }">
 	                                              Edit
 	                                            </a>
 	                                            <a class="btn btn-danger btn-sm" href="${deleteLink }" 
-	                                            onclick="if(!(confirm('Are you want to delete this member?'))) return false">
+	                                            onclick="if(!(confirm('Are you want to delete this product?'))) return false">
 	                                                Delete
 	                                            </a>
 	                                        </td>
