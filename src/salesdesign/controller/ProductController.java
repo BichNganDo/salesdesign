@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import salesdesign.entity.Category;
 import salesdesign.entity.Product;
@@ -46,11 +47,25 @@ public class ProductController {
 		return "products/form-add";
 	}
 	
-	@PostMapping("/saveProduct")
+	@PostMapping("saveProduct")
 	public String saveProduct(@ModelAttribute("product") Product theProduct){
 		productService.saveProduct(theProduct);
 		
 		return "redirect:/product/list";
+	}
+	
+	@GetMapping("showFormForUpdate")
+	public String showFormForUpdate(@RequestParam("productId") int theId, Model theModel) {
+		
+
+		Product theProduct = productService.getProduct(theId);
+		
+		theModel.addAttribute("product", theProduct);
+		
+		List<Category> theCategories = categoryService.getCategories();
+		
+		theModel.addAttribute("categories", theCategories);
+		return "products/form-add";
 	}
 	
 	
