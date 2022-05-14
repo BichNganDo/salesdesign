@@ -160,7 +160,7 @@
 
                                 <div class="col-sm-3 text-right">
                                     <a class="btn btn-primary" href="${pageContext.request.contextPath }/product/add-product">
-                                        <i class="fas fa-plus"></i> Add Member
+                                        <i class="fas fa-plus"></i> Add Product
                                     </a>
                                 </div>
                             </div>
